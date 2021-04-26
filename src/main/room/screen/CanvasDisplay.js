@@ -13,7 +13,7 @@ jt.CanvasDisplay = function(room, mainElement) {
         delete jt.ScreenGUI.css;
         setupMain();
         setupBar();
-        setupFullscreen();
+        //setupFullscreen(); // webrcade
         consolePanel = new jt.ConsolePanel(self, consolePanelElement);
         monitor = new jt.Monitor(self);
     }
@@ -541,6 +541,8 @@ jt.CanvasDisplay = function(room, mainElement) {
     }
 
     function updateLoading() {
+        // webrcade
+        return;
         var disp = isLoading ? "block" : "none";
         logoLoadingIcon.style.display = disp;
         canvasLoadingIcon.style.display = disp;
@@ -609,7 +611,7 @@ jt.CanvasDisplay = function(room, mainElement) {
         unmuteMessage = document.getElementById("jt-unmute-message");
         consolePanelElement = document.getElementById("jt-console-panel");
 
-        suppressContextMenu(mainElement);
+        //suppressContextMenu(mainElement); // webrcade
         preventDrag(logoImage);
         preventDrag(logoLoadingIcon);
         preventDrag(canvasLoadingIcon);
@@ -1362,10 +1364,11 @@ jt.CanvasDisplay = function(room, mainElement) {
 
     var isFullscreen = false, isLandscape = false;
 
-    var isTouchDevice = jt.Util.isTouchDevice();
-    var isMobileDevice = jt.Util.isMobileDevice();
-    var isIOSDevice = jt.Util.isIOSDevice();
-    var isBrowserStandalone = jt.Util.isBrowserStandaloneMode();
+    // webrcade
+    var isTouchDevice =  false; //jt.Util.isTouchDevice();
+    var isMobileDevice = false; // jt.Util.isMobileDevice();
+    var isIOSDevice = false; // jt.Util.isIOSDevice();
+    var isBrowserStandalone = false; // jt.Util.isBrowserStandaloneMode();
     var browserName = jt.Util.browserInfo().name;
 
     var fullscreenAPIEnterMethod, fullScreenAPIExitMethod, fullScreenAPIQueryProp, fullScreenAPIExitUserRequested = false, fullScreenScrollHack = false;

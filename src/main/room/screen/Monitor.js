@@ -75,6 +75,12 @@ jt.Monitor = function(display) {
     };
 
     this.setVideoStandard = function(standard) {
+        // webrcade
+        var jatari = window.Javatari;
+        if (jatari.videoStandardCallback) {
+            jatari.videoStandardCallback(standard);
+        }
+
         videoStandard = standard;
         signalWidth = standard.totalWidth;
         signalHeight = standard.totalHeight;

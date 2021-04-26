@@ -87,7 +87,13 @@ jt.Pia = function() {
 
     var controls = jt.ConsoleControls;
 
-    this.controlStateChanged = function(control, state) {
+    // webrcade
+    this.updateControls = function(swcha, swchb) {
+        SWCHA = swcha;
+        SWCHB = swchb;
+    }
+
+    this.controlStateChanged = function(control, state) {        
         switch (control) {
             case controls.JOY0_UP:        if (state) SWCHA &= 0xef; else SWCHA |= 0x10; return;	//  0 = Pressed
             case controls.JOY0_DOWN:      if (state) SWCHA &= 0xdf; else SWCHA |= 0x20; return;

@@ -15,6 +15,8 @@ jt.RecentStoredROMs = function() {
     };
 
     this.storeROM = function(rom) {
+        return; // webrcade
+
         this.getCatalog();
         var found = storedList.find(function(stored) { return stored && stored.h === rom.info.h; });
 

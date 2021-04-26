@@ -407,19 +407,27 @@ jt.Util = new function() {
     };
 
     this.isTouchDevice = function() {
-        return ('ontouchstart' in window) || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+        // webrcade                
+        return false;        
+        //return ('ontouchstart' in window) || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
     };
 
     this.isMobileDevice = function() {
-        return this.isTouchDevice() && (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+        // webrcade        
+        return false;        
+        //return this.isTouchDevice() && (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
     };
 
     this.isIOSDevice = function() {
-        return (/ipad|iphone|ipod/i).test(navigator.userAgent);
+        // webrcade                
+        return false;        
+        //return (/ipad|iphone|ipod/i).test(navigator.userAgent);
     };
 
     this.isBrowserStandaloneMode = function() {
-        return navigator.standalone || window.matchMedia("(display-mode: standalone)").matches;
+        // webrcade        
+        return false;        
+        //return navigator.standalone || window.matchMedia("(display-mode: standalone)").matches;
     };
 
     this.onTapOrMouseDown = function(element, handler) {

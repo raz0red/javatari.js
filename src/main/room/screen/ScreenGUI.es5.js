@@ -25,7 +25,35 @@ jt.ScreenGUI = jt.Util.isMobileDevice()
     };
 
 jt.ScreenGUI.html = function() {
-    return '<div id="jt-screen-fs" tabindex="0"> <div id="jt-screen-fs-center" tabindex="-1"> <div id="jt-screen-canvas-outer"> <canvas id="jt-screen-canvas" tabindex="-1"></canvas> <img id="jt-canvas-loading-icon" draggable="false" src="' + jt.Images.urls.loading + '"> <div id="jt-unmute-message"></div> <div id="jt-logo"> <div id="jt-logo-center"> <img id="jt-logo-loading-icon" draggable="false" src="' + jt.Images.urls.loading + '"> <img id="jt-logo-image" draggable="false" src="' + jt.Images.urls.logo + '"> <div id="jt-logo-message"> <div id="jt-logo-message-text"></div> <div id="jt-logo-message-ok"> <div id="jt-logo-message-ok-text"></div> </div> </div> </div> </div> <div id="jt-osd"></div> </div> <div id="jt-bar"> <div id="jt-bar-inner"></div> </div> <div id="jt-console-panel" class="jt-console-panel" tabindex="-1"> </div> </div> <div id="jt-screen-scroll-message"> Swipe up/down on the Screen <br>to hide the browser bars! </div> </div>';
+    // return '<div id="jt-screen-fs" tabindex="0"> <div id="jt-screen-fs-center" tabindex="-1"> <div id="jt-screen-canvas-outer"> <canvas id="jt-screen-canvas" tabindex="-1"></canvas> <img id="jt-canvas-loading-icon" draggable="false" src="' + jt.Images.urls.loading + '"> <div id="jt-unmute-message"></div> <div id="jt-logo"> <div id="jt-logo-center"> <img id="jt-logo-loading-icon" draggable="false" src="' + jt.Images.urls.loading + '"> <img id="jt-logo-image" draggable="false" src="' + jt.Images.urls.logo + '"> <div id="jt-logo-message"> <div id="jt-logo-message-text"></div> <div id="jt-logo-message-ok"> <div id="jt-logo-message-ok-text"></div> </div> </div> </div> </div> <div id="jt-osd"></div> </div> <div id="jt-bar"> <div id="jt-bar-inner"></div> </div> <div id="jt-console-panel" class="jt-console-panel" tabindex="-1"> </div> </div> <div id="jt-screen-scroll-message"> Swipe up/down on the Screen <br>to hide the browser bars! </div> </div>';
+
+    return (
+        '<div id="jt-screen-fs" tabindex="0">' +
+            '<div id="jt-screen-fs-center" tabindex="-1">' +
+                '<div id="jt-screen-canvas-outer">' +
+                    '<canvas id="jt-screen-canvas" tabindex="-1"></canvas>' +
+                    '<img style="display:none" id="jt-canvas-loading-icon" draggable="false" src=" + jt.Images.urls.loading + ">' +
+                    '<div style="display: none" id="jt-unmute-message"></div>' +
+                    '<div style="display:none" id="jt-logo">' +
+                        '<div style="display:none" id="jt-logo-center">' +
+                        '<img style="display:none" id="jt-logo-loading-icon" draggable="false" src=" + jt.Images.urls.loading + "> <img id="jt-logo-image" draggable="false" src=" + jt.Images.urls.logo + ">' + 
+                        '<div style="display:none;" id="jt-logo-message">' +
+                            '<div id="jt-logo-message-text"></div>' +
+                            '<div id="jt-logo-message-ok">' +
+                                '<div id="jt-logo-message-ok-text"></div>' +
+                            '</div>' +
+                        '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div style="display:none" id="jt-osd"></div>' +
+                '</div>' +
+                '<div style="display:none;" id="jt-bar">' +
+                    '<div id="jt-bar-inner"></div>' +
+                '</div>' +
+                '<div style="display:none" id="jt-console-panel" class="jt-console-panel" tabindex="-1"> </div>' +
+            '</div>' +
+        '</div>'
+    );    
 };
 
 jt.ScreenGUI.htmlConsolePanel =

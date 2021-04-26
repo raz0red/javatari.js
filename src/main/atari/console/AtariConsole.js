@@ -5,6 +5,16 @@ jt.AtariConsole = function(mainVideoClock) {
 
     var self = this;
 
+    // webrcade
+    this.updateControls = function(swcha, swchb) {
+        pia.updateControls(swcha, swchb);
+    }    
+
+    // webrcade
+    this.joyButtonPressed = function(index, pressed) {
+        tia.joyButtonPressed(index, pressed);
+    }
+
     function init() {
         mainComponentsCreate();
         socketsCreate();

@@ -14,19 +14,22 @@ jt.DOMConsoleControls = function(room, keyForwardControls) {
     this.connect = function(pControlsSocket) {
         consoleControlsSocket = pControlsSocket;
         consoleControlsSocket.connectControls(this);
-        gamepadControls.connect(pControlsSocket);
-        touchControls.connect(pControlsSocket);
+// webrcade        
+//        gamepadControls.connect(pControlsSocket);
+//        touchControls.connect(pControlsSocket);
     };
 
     this.connectPeripherals = function(pScreen) {
         screen = pScreen;
-        gamepadControls.connectScreen(pScreen);
-        touchControls.connectScreen(pScreen);
+// webrcade        
+//        gamepadControls.connectScreen(pScreen);
+//        touchControls.connectScreen(pScreen);
     };
 
     this.addKeyInputElement = function(element) {
-        element.addEventListener("keydown", this.keyDown);
-        element.addEventListener("keyup", this.keyUp);
+// webrcade        
+//        element.addEventListener("keydown", this.keyDown);
+//        element.addEventListener("keyup", this.keyUp);
     };
 
     this.setupTouchControlsIfNeeded = function(mainElement) {
@@ -35,16 +38,18 @@ jt.DOMConsoleControls = function(room, keyForwardControls) {
 
     this.powerOn = function() {
         preventIEHelp();
-        gamepadControls.powerOn();
-        touchControls.powerOn();
+// webrcade        
+//        gamepadControls.powerOn();
+//        touchControls.powerOn();
         if (PADDLES_MODE === 0) setPaddleMode(false, false);
         else if (PADDLES_MODE === 1) setPaddleMode(true, false);
     };
 
     this.powerOff = function() {
         setPaddleMode(false, false);
-        gamepadControls.powerOff();
-        touchControls.powerOff();
+// webrcade                
+//        gamepadControls.powerOff();
+//        touchControls.powerOff();
     };
 
     this.releaseControllers = function() {

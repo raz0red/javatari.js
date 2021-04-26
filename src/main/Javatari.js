@@ -22,15 +22,15 @@ Javatari = {
 
     // General configuration
     AUTO_START:                     true,
-    AUTO_POWER_ON_DELAY:            1200,                       // -1: no auto Power-ON; >= 0: wait specified milliseconds before Power-ON
-    CARTRIDGE_SHOW_RECENT:          true,
-    CARTRIDGE_CHANGE_DISABLED:      false,
+    AUTO_POWER_ON_DELAY:            0 /*1200*/,                       // -1: no auto Power-ON; >= 0: wait specified milliseconds before Power-ON
+    CARTRIDGE_SHOW_RECENT:          false /*true*/,
+    CARTRIDGE_CHANGE_DISABLED:      true /*false*/,
     CARTRIDGE_LABEL_COLORS:         "",                         // Space-separated colors for Label, Background, Border. e.g. "#f00 #000 transparent". Leave "" for defaults
     SCREEN_RESIZE_DISABLED:         false,
-    SCREEN_CONSOLE_PANEL_DISABLED:  false,
+    SCREEN_CONSOLE_PANEL_DISABLED:  true /*false*/,
     SCREEN_ELEMENT_ID:              "javatari-screen",
     CONSOLE_PANEL_ELEMENT_ID:       -1,                         // -1: auto. Don't change! :-)
-    SCREEN_FULLSCREEN_MODE:         -1,                         // -2: disabled; -1: auto; 0: off; 1: on
+    SCREEN_FULLSCREEN_MODE:         -2 /*-1*/,                         // -2: disabled; -1: auto; 0: off; 1: on
     SCREEN_CRT_MODE:                0,                          // -1: auto; 0: off; 1: on
     SCREEN_FILTER_MODE:             -3,                         // -3: user set (default auto); -2: browser default; -1: auto; 0..3: smoothing level
     SCREEN_DEFAULT_SCALE:           -1,                         // -1: auto; 0.5..N in 0.1 steps: scale
@@ -44,14 +44,14 @@ Javatari = {
     AUDIO_SIGNAL_BUFFER_RATIO:      2,                          // Internal Audio Signal buffer based on Monitor buffer
     AUDIO_SIGNAL_ADD_FRAMES:        3,                          // Additional frames in internal Audio Signal buffer based on Monitor buffer
     PADDLES_MODE:                   -1,                         // -1: auto; 0: off; 1: on
-    TOUCH_MODE:                     -1,                         // -1: auto; 0: disabled; 1: enabled; 2: enabled (swapped)
+    TOUCH_MODE:                     0 /*-1*/,                         // -1: auto; 0: disabled; 1: enabled; 2: enabled (swapped)
 
     IMAGES_PATH:                    window.JAVATARI_IMAGES_PATH || "images/",
     PAGE_BACK_CSS:                  "",                         // CSS to modify page background color. Applied to the body element
 
     WEB_EXTENSIONS_SERVER:          "webmsx.herokuapp.com",     // Server address for NetPlay
 
-    RESET:                          0,                          // if value = 1 clear all saved data on the client
+    RESET:                          1 /*0*/,                          // if value = 1 clear all saved data on the client
     ALLOW_URL_PARAMETERS:           true                        // Allows user to override any of these parameters via URL query parameters
 
 };

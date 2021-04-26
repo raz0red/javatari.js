@@ -35,6 +35,12 @@ jt.Tia = function(pCpu, pPia, audioSocket) {
     };
 
     this.frame = function() {
+        // webrcade
+        var jatari = window.Javatari;
+        if (jatari.frameCallback) {
+            jatari.frameCallback();
+        }
+
         do {
             // Begin line
             clock = 0;
@@ -1288,6 +1294,14 @@ jt.Tia = function(pCpu, pPia, audioSocket) {
     // Controls interface  -----------------------------------
 
     var controls = jt.ConsoleControls;
+
+    // webrcade
+    this.joyButtonPressed = function(index, pressed) {
+        this.controlStateChanged(
+            index ? controls.JOY1_BUTTON : controls.JOY0_BUTTON,
+            pressed
+        );
+    }
 
     this.controlStateChanged = function(control, state) {
         switch (control) {
