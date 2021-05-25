@@ -121,23 +121,29 @@ jt.WebAudioSpeaker = function(mainElement) {
     function registerUnlockOnTouchIfNeeded() {
         // Browser may require unlocking of the AudioContext on user interaction!
         if (processor && (!audioContext.state || audioContext.state === "suspended")) {
-            mainElement.addEventListener("touchend", unlockAudioContext, true);
-            mainElement.addEventListener("mousedown", unlockAudioContext, true);
-            mainElement.addEventListener("keydown", unlockAudioContext, true);
+            window.document.addEventListener("touchend", unlockAudioContext, true);
+            window.document.addEventListener("mousedown", unlockAudioContext, true);
+            window.document.addEventListener("keydown", unlockAudioContext, true);
             jt.Util.log("Speaker Audio Context resume event registered");
             screen.speakerUnlockStateUpdate(false);
+
+            if (Javatari.audioCallback) Javatari.audioCallback(false);
         }
 
         function unlockAudioContext() {
-            mainElement.removeEventListener("touchend", unlockAudioContext, true);
-            mainElement.removeEventListener("mousedown", unlockAudioContext, true);
-            mainElement.removeEventListener("keydown", unlockAudioContext, true);
+            window.document.removeEventListener("touchend", unlockAudioContext, true);
+            window.document.removeEventListener("mousedown", unlockAudioContext, true);
+            window.document.removeEventListener("keydown", unlockAudioContext, true);
 
             var ex;
             try {
-                audioContext.resume().then(function () {
-                    jt.Util.log('Speaker Audio Context resumed!');
-                });
+                audioContext.resume()
+                    .then(function () {
+                        jt.Util.log('Speaker Audio Context resumed!');
+                    })
+                    .then(function () {
+                        if (Javatari.audioCallback) Javatari.audioCallback(true);
+                    });
             } catch (e) {
                 ex = e;
             }
