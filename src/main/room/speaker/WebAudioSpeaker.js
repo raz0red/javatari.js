@@ -117,6 +117,8 @@ jt.WebAudioSpeaker = function(mainElement) {
             jt.Util.error("Could not create ScriptProcessorNode. Audio DISABLED!\n" + ex);
         }
     };
+    
+    var audioSucceeded = false;
 
     function registerUnlockOnTouchIfNeeded() {
         // Browser may require unlocking of the AudioContext on user interaction!
@@ -127,35 +129,59 @@ jt.WebAudioSpeaker = function(mainElement) {
             jt.Util.log("Speaker Audio Context resume event registered");
             screen.speakerUnlockStateUpdate(false);
 
-            if (Javatari.audioCallback) Javatari.audioCallback(false);
+            
+            //setTimeout(function() {    
+                if (audioContext.state !== 'running') {
+                    if (Javatari.audioCallback) Javatari.audioCallback(false);
+                    setTimeout(unlockAudioContext, 500);
+                }
+            //}, 100);
         }
 
         function unlockAudioContext() {
-            window.document.removeEventListener("touchend", unlockAudioContext, true);
-            window.document.removeEventListener("mousedown", unlockAudioContext, true);
-            window.document.removeEventListener("keydown", unlockAudioContext, true);
+            console.log("audio unlock.");
+            function success() {
+                if (audioSucceeded) return;
+                audioSucceeded = true;
+                console.log("audio success.");
 
-            var ex;
-            try {
-                audioContext.resume()
-                    .then(function () {
-                        jt.Util.log('Speaker Audio Context resumed!');
-                    })
-                    .then(function () {
-                        if (Javatari.audioCallback) Javatari.audioCallback(true);
-                    });
-            } catch (e) {
-                ex = e;
+                if (Javatari.audioCallback) Javatari.audioCallback(true);
+
+                window.document.removeEventListener("touchend", unlockAudioContext, true);
+                window.document.removeEventListener("mousedown", unlockAudioContext, true);
+                window.document.removeEventListener("keydown", unlockAudioContext, true);
+
+                var source = audioContext.createBufferSource();
+                source.buffer = audioContext.createBuffer(1, 1, 22050);
+                source.connect(audioContext.destination);
+                source.start(0);
+                if (ex) jt.Util.log("Audio Context unlocked!");
+                screen.speakerUnlockStateUpdate(true);    
             }
 
-            var source = audioContext.createBufferSource();
-            source.buffer = audioContext.createBuffer(1, 1, 22050);
-            source.connect(audioContext.destination);
-            source.start(0);
-            if (ex) jt.Util.log("Audio Context unlocked!");
-            screen.speakerUnlockStateUpdate(true);
+            if (audioContext.state !== 'running') {
+                var ex;
+                try {
+                    audioContext.resume()
+                        .then(function () {
+                            console.log("audio resume.")
+                            if (audioContext.state === 'running') {
+                                jt.Util.log('Speaker Audio Context resumed!');
+                                success();                        
+                            } else {
+                                setTimeout(unlockAudioContext, 500);
+                            }
+                        });
+                } catch (e) {
+                    ex = e;
+                    setTimeout(unlockAudioContext, 500);
+                }
+            } else {
+                success();
+            }
         }
     }
+
     function updateResamplingFactors() {
         //if (bufferSizeProblem !== undefined) console.error("+++++++ buffer size problem: " + bufferSizeProblem);
 
