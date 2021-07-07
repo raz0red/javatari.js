@@ -130,12 +130,12 @@ jt.WebAudioSpeaker = function(mainElement) {
             screen.speakerUnlockStateUpdate(false);
 
             
-            //setTimeout(function() {    
+            setTimeout(function() {    
                 if (audioContext.state !== 'running') {
                     if (Javatari.audioCallback) Javatari.audioCallback(false);
                     setTimeout(unlockAudioContext, 500);
                 }
-            //}, 100);
+            }, 100);
         }
 
         function unlockAudioContext() {
