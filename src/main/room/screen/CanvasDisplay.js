@@ -478,6 +478,10 @@ jt.CanvasDisplay = function(room, mainElement) {
     }
 
     function updateScale() {
+        // WRC
+        console.log("## updateScale ignored.");
+        return;
+
         var canvasWidth = Math.round(targetWidth * scaleY * aspectX * 2);    // Fixed internal aspectX of 2
         var canvasHeight = Math.round(targetHeight * scaleY);
         canvas.style.width = "" + canvasWidth + "px";
